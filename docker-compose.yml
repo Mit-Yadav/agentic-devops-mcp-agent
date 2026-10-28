@@ -1,0 +1,15 @@
+﻿version: '3.8'
+
+services:
+  devops-mcp-agent:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+      - PROMETHEUS_ENDPOINT=http://prometheus:9090
+      - KUBERNETES_IN_CLUSTER=false
+    volumes:
+      - ./rag/runbooks:/app/rag/runbooks:ro
+    restart: unless-stopped

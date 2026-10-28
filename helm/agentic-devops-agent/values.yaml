@@ -1,0 +1,17 @@
+﻿replicaCount: 2
+image:
+  repository: mityadav/agentic-devops-agent
+  tag: latest
+  pullPolicy: IfNotPresent
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+service:
+  type: ClusterIP
+  port: 8000
+env:
+  PROMETHEUS_ENDPOINT: "http://prometheus-k8s.monitoring.svc.cluster.local:9090"
